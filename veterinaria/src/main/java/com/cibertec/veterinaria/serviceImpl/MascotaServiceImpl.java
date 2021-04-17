@@ -41,8 +41,8 @@ public class MascotaServiceImpl implements MascotaService{
 			Mascota m= new Mascota();
 			m.setCod_mas(MascotaNew.getCod_mas());
 			m.setNom_mas(MascotaNew.getNom_mas());
-			m.setCod_cli(MascotaNew.getCod_cli());
-			m.setCodTipo_masc(MascotaNew.getCodTipo_masc());
+			m.setCliente(MascotaNew.getCliente());
+			m.setTipoMascota(MascotaNew.getTipoMascota());
 			mRep.save(m);
 			return "Mascota modificada.";
 		}

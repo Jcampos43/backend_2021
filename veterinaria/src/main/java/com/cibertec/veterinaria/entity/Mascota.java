@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -26,13 +27,13 @@ public class Mascota implements Serializable{
 	@Column(name="nom_mas")
 	private String nom_mas;
 	
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ManyToOne
 	@JoinColumn(name="cod_cli")
-	private String cod_cli;
+	private Cliente cliente;
 	
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@ManyToOne
 	@JoinColumn(name="codTipo_masc")
-	private String codTipo_masc;
+	private TipoMascota tipoMascota;
 
 	public int getCod_mas() {
 		return cod_mas;
@@ -50,22 +51,21 @@ public class Mascota implements Serializable{
 		this.nom_mas = nom_mas;
 	}
 
-	public String getCod_cli() {
-		return cod_cli;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setCod_cli(String cod_cli) {
-		this.cod_cli = cod_cli;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
-	public String getCodTipo_masc() {
-		return codTipo_masc;
+	public TipoMascota getTipoMascota() {
+		return tipoMascota;
 	}
 
-	public void setCodTipo_masc(String codTipo_masc) {
-		this.codTipo_masc = codTipo_masc;
+	public void setTipoMascota(TipoMascota tipoMascota) {
+		this.tipoMascota = tipoMascota;
 	}
-
 	
 	
 	
