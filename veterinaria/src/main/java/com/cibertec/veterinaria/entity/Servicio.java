@@ -39,14 +39,11 @@ public class Servicio implements Serializable {
 	@Column(name="desc_ser")
 	private String desc_ser;
 	
-
 	@Column(name="horio_ser")
 	private String horio_ser;
 	
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@Column(name="fec_ser")
-	private Date fec_ser;
+	private String fec_ser;
 
 	public int getCod_ser() {
 		return cod_ser;
@@ -88,11 +85,11 @@ public class Servicio implements Serializable {
 		this.horio_ser = horio_ser;
 	}
 
-	public Date getFec_ser() {
+	public String getFec_ser() {
 		return fec_ser;
 	}
 
-	public void setFec_ser(Date fec_ser) {
+	public void setFec_ser(String fec_ser) {
 		this.fec_ser = fec_ser;
 	}
 
