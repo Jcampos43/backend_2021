@@ -47,13 +47,13 @@ public class Producto implements Serializable {
 	private String desc_html_pro;
 
 	@Column(name="foto1")
-	private byte[] foto1;
+	private String foto1;
 	
 	@Column(name="foto2")
-	private byte[] foto2;
+	private String foto2;
 	
 	@Column(name="foto3")
-	private byte[] foto3;
+	private String foto3;
 
 	/*Metodos GET Y SET */
 	public int getCod_pro() {
@@ -120,28 +120,30 @@ public class Producto implements Serializable {
 		this.desc_html_pro = desc_html_pro;
 	}
 
-	public byte[] getFoto1() {
+	public String getFoto1() {
 		return foto1;
 	}
 
-	public void setFoto1(byte[] foto1) {
+	public void setFoto1(String foto1) {
 		this.foto1 = foto1;
 	}
 
-	public byte[] getFoto2() {
+	public String getFoto2() {
 		return foto2;
 	}
 
-	public void setFoto2(byte[] foto2) {
+	public void setFoto2(String foto2) {
 		this.foto2 = foto2;
 	}
 
-	public byte[] getFoto3() {
+	public String getFoto3() {
 		return foto3;
 	}
 
-	public void setFoto3(byte[] foto3) {
+	public void setFoto3(String foto3) {
 		this.foto3 = foto3;
 	}
+
+	
 	
 }
