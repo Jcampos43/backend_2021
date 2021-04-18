@@ -128,7 +128,7 @@ public class Producto implements Serializable {
 		this.foto1 = foto1;
 	}
 
-	public String getFoto2() {
+	public String getFoto2() { 
 		return foto2;
 	}
 

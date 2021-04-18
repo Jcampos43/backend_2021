@@ -34,7 +34,7 @@ public class ProductoController {
 	@ResponseBody
 	public List<Producto> listaProducto(){
 		return pSer.listaProducto();
-	}
+	} 
 		
 	@PostMapping(value = "/registraProducto")
 	public void insertaProducto(@RequestBody Producto bean, @RequestParam("file")MultipartFile imagen, RedirectAttributes attribute) {
