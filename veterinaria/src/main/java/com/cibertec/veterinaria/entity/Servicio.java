@@ -2,22 +2,12 @@ package com.cibertec.veterinaria.entity;
 
 import java.io.Serializable;
 
-import java.util.Date;
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="tb_servicio")
@@ -52,7 +42,6 @@ public class Servicio implements Serializable {
 	public void setCod_ser(int cod_ser) {
 		this.cod_ser = cod_ser;
 	}
-	/*Pierina la voz*/
 	public String getNom_ser() {
 		return nom_ser;
 	}

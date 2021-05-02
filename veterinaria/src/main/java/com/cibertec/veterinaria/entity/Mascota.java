@@ -11,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
 @Table(name="tb_mascota")
 public class Mascota implements Serializable{
@@ -28,8 +26,8 @@ public class Mascota implements Serializable{
 	private String nom_mas;
 	
 	@ManyToOne
-	@JoinColumn(name="cod_cli")
-	private Cliente cliente;
+	@JoinColumn(name="codigo")
+	private Usuario cliente;
 	
 	@ManyToOne
 	@JoinColumn(name="codTipo_masc")
@@ -51,11 +49,11 @@ public class Mascota implements Serializable{
 		this.nom_mas = nom_mas;
 	}
 
-	public Cliente getCliente() {
+	public Usuario getUsuario() {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	public void setUsuario(Usuario cliente) {
 		this.cliente = cliente;
 	}
 

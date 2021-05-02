@@ -2,6 +2,9 @@ package com.cibertec.veterinaria.controller;
 
 import java.util.List;
 
+
+import com.cibertec.veterinaria.entity.Usuario;
+import com.cibertec.veterinaria.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,35 +16,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cibertec.veterinaria.entity.Cliente;
-import com.cibertec.veterinaria.service.ClienteService;
 
-@RequestMapping(value="/cliente")	
+@RequestMapping(value="/usuario")	
 @RestController
-public class ClienteController {
-	
-	@Autowired
-	ClienteService cSer;
-		
-	@GetMapping(value = "/listaCliente")
+public class UsuarioController {
+
+    @Autowired
+    UsuarioService uSer;  
+
+    @GetMapping(value = "/listaUsuario")
 	@ResponseBody
-	public List<Cliente> listaCliente(){
-		return cSer.listaCliente();
+	public List<Usuario> listaUsuario(){
+		return uSer.listaUsuario();
 	}
 		
 	@PostMapping(value = "/registraCliente")
-	public void registraCliente(@RequestBody Cliente bean) {
-		cSer.insertaCliente(bean);
+	public void registraCliente(@RequestBody Usuario bean) {
+		uSer.insertaUsuario(bean);
 	}
 	
-	@PutMapping(value = "/actualizaCliente")
-	public void actualizaCliente(@RequestBody Cliente bean) {
-		cSer.actualizaCliente(bean);
+	@PutMapping(value = "/actualizaUsuario")
+	public void actualizaUsuario(@RequestBody Usuario bean) {
+		uSer.actualizaUsuario(bean);
 	}
 	
-	@DeleteMapping(value = "/eliminaCliente/{cod_cli}")
-	public void eliminaCliente(@PathVariable(name = "cod_cli") Integer cod) {
-		cSer.eliminaCliente(cod);
+	@DeleteMapping(value = "/eliminaUsuario/{codigo}")
+	public void eliminaUsuario(@PathVariable(name = "codigo") Integer cod) {
+		uSer.eliminaUsuario(cod);
 	}
 	
 }
