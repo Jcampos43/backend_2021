@@ -2,10 +2,14 @@ package com.cibertec.veterinaria.controller;
 
 import java.util.List;
 
-
 import com.cibertec.veterinaria.entity.Usuario;
 import com.cibertec.veterinaria.service.UsuarioService;
+import com.cibertec.veterinaria.util.ExcepcionUtil;
+import com.cibertec.veterinaria.util.RespuestaWeb;
+import com.cibertec.veterinaria.util.TipoRespuestaWeb;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,4 +49,26 @@ public class UsuarioController {
 		uSer.eliminaUsuario(cod);
 	}
 	
+	@PostMapping(value="/login")
+	public ResponseEntity<?> login(@RequestBody Usuario usuario) {
+		RespuestaWeb respuestaWeb = new RespuestaWeb();
+		Usuario u = new Usuario();
+		try {
+			boolean resultado=false;
+			u = uSer.login(usuario.getDni(), usuario.getPassword());
+			if(u==null) {
+				respuestaWeb.setTipoRespuesta(TipoRespuestaWeb.VACIO);
+			}
+			else {
+				respuestaWeb.setTipoRespuesta(TipoRespuestaWeb.CORRECTA);	
+				resultado=true;
+			}
+			respuestaWeb.getParametros().put("idusuario", u.getCodigo());
+			respuestaWeb.getParametros().put("resultado", resultado);
+			return ResponseEntity.ok(respuestaWeb);
+
+		}catch(Exception excepcion) {
+			return ResponseEntity.badRequest().body(ExcepcionUtil.controlar(excepcion));
+		}
+	}
 }

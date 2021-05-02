@@ -21,12 +21,9 @@ public class Usuario implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo")
     private int codigo;
-
-    @Column(name="user")
-	private String user;
     
     @Column(name="pass")
-	private String pass;
+	private String password;
     
     @Column(name="nombre")
 	private String nombre;
@@ -34,16 +31,16 @@ public class Usuario implements Serializable{
     @Column(name="apellidos")
 	private String apellidos;
     
-    @Column(name="foto")
-    private String foto;
-
     @ManyToOne
-	@JoinColumn(name="tipo_usuario")
-	private TipoUsuario tipo_usuario;
+    @JoinColumn(name="tipo_usuario")
+	private TipoUsuario tipoUsuario;
+    
+    @Column(name="dni")
+    private int dni;
     
     @ManyToOne
 	@JoinColumn(name="cod_dis")
-    private Distrito distrito;
+	private Distrito distrito;;
 
 	public int getCodigo() {
 		return codigo;
@@ -53,20 +50,12 @@ public class Usuario implements Serializable{
 		this.codigo = codigo;
 	}
 
-	public String getUser() {
-		return user;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getNombre() {
@@ -85,20 +74,20 @@ public class Usuario implements Serializable{
 		this.apellidos = apellidos;
 	}
 
-	public String getFoto() {
-		return foto;
+	public int getDni() {
+		return dni;
 	}
 
-	public void setFoto(String foto) {
-		this.foto = foto;
+	public void setDni(int dni) {
+		this.dni = dni;
 	}
 
-	public TipoUsuario getTipo_usuario() {
-		return tipo_usuario;
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
 	}
 
-	public void setTipo_usuario(TipoUsuario tipo_usuario) {
-		this.tipo_usuario = tipo_usuario;
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 	public Distrito getDistrito() {
@@ -109,8 +98,7 @@ public class Usuario implements Serializable{
 		this.distrito = distrito;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
+
 	
 }
