@@ -6,7 +6,6 @@ import com.cibertec.veterinaria.entity.Interfaz;
 
 public interface InterfazService{
 
-	public abstract List<Interfaz> listaInterfaz();
-
+	public abstract List<Interfaz> listaInterfaz(int cod_tip_usu);
     
 }

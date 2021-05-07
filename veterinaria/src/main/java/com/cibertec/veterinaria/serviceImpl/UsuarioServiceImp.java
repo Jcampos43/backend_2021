@@ -36,27 +36,31 @@ public class UsuarioServiceImp implements UsuarioService {
 
 	@Override
 	public String actualizaUsuario(Usuario usuarioNew) {
-		int num= usuarioNew.getCodigo();
+		int num= usuarioNew.getCod_usu();
 		if(repository.findById(num).isPresent()) {
 			Usuario usu= new Usuario();
-			usu.setCodigo(usuarioNew.getCodigo());
+			usu.setCod_usu(usuarioNew.getCod_usu());
+			usu.setNom_usu(usuarioNew.getNom_usu());
+			usu.setApe_usu(usuarioNew.getApe_usu());
+			usu.setDni_usu(usuarioNew.getDni_usu());
+			usu.setPass_usu(usuarioNew.getPass_usu());
 			usu.setTipoUsuario(usuarioNew.getTipoUsuario());
-			usu.setPassword(usuarioNew.getPassword());
-			usu.setNombre(usuarioNew.getNombre());
-			usu.setApellidos(usuarioNew.getApellidos());
-			usu.setDni(usuarioNew.getDni());
 			usu.setDistrito(usuarioNew.getDistrito());
 			
 			repository.save(usu);
 			return "Usuario modificado.";
 		}
-		return "Ocurrió un error al modificar el cliente.";
+		return "Ocurrió un error al modificar el usuario.";
 	}
 
 	@Override
-	public Usuario login(int param_dni, String param_pass) {
+	public Usuario login(String param_dni, String param_pass) {
 		return repository.login(param_dni, param_pass);
 	}
 	
+	/*@Override
+	public Usuario iniciarSesion(String dni_usu, String pass_usu) {
+		return repository.iniciarSesion(dni_usu, pass_usu);
+	}*/
 
 }

@@ -29,8 +29,10 @@ public class Interfaz implements Serializable {
 	private String url_int;
 	
     @ManyToOne
-	@JoinColumn(name="tipo_usuario")
+	@JoinColumn(name="cod_tip_usu")
     private TipoUsuario tipoUsuario;
+    
+    /*METODOS GETTER Y SETTER*/
 
 	public int getCod_int() {
 		return cod_int;
@@ -66,6 +68,6 @@ public class Interfaz implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-    
+	}    
+	    
 }

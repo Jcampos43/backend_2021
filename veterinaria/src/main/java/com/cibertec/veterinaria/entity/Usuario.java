@@ -19,67 +19,70 @@ public class Usuario implements Serializable{
 	    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codigo")
-    private int codigo;
+    @Column(name = "cod_usu")
+    private int cod_usu;
     
-    @Column(name="pass")
-	private String password;
+    @Column(name="nom_usu")
+	private String nom_usu;
     
-    @Column(name="nombre")
-	private String nombre;
+    @Column(name="ape_usu")
+	private String ape_usu;
     
-    @Column(name="apellidos")
-	private String apellidos;
+    @Column(name="dni_usu")
+	private String dni_usu;
+    
+    @Column(name="pass_usu")
+	private String pass_usu;
     
     @ManyToOne
-    @JoinColumn(name="tipo_usuario")
+    @JoinColumn(name="cod_tip_usu")
 	private TipoUsuario tipoUsuario;
-    
-    @Column(name="dni")
-    private int dni;
     
     @ManyToOne
 	@JoinColumn(name="cod_dis")
-	private Distrito distrito;;
+	private Distrito distrito;
+    
+    
+    /*METODOS GETTER Y SETTER*/
 
-	public int getCodigo() {
-		return codigo;
+	public int getCod_usu() {
+		return cod_usu;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setCod_usu(int cod_usu) {
+		this.cod_usu = cod_usu;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getNom_usu() {
+		return nom_usu;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setNom_usu(String nom_usu) {
+		this.nom_usu = nom_usu;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getApe_usu() {
+		return ape_usu;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setApe_usu(String ape_usu) {
+		this.ape_usu = ape_usu;
 	}
 
-	public String getApellidos() {
-		return apellidos;
+	public String getDni_usu() {
+		return dni_usu;
 	}
 
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+	public void setDni_usu(String dni_usu) {
+		this.dni_usu = dni_usu;
 	}
 
-	public int getDni() {
-		return dni;
+	public String getPass_usu() {
+		return pass_usu;
 	}
 
-	public void setDni(int dni) {
-		this.dni = dni;
+	public void setPass_usu(String pass_usu) {
+		this.pass_usu = pass_usu;
 	}
 
 	public TipoUsuario getTipoUsuario() {
@@ -98,7 +101,7 @@ public class Usuario implements Serializable{
 		this.distrito = distrito;
 	}
 
-	
-
-	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

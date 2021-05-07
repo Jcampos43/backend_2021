@@ -17,30 +17,33 @@ public class TipoUsuario implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codigo")
-    private int codigo;
+    @Column(name = "cod_tip_usu")
+    private int cod_tip_usu;
 
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nom_tip_usu")
+    private String nom_tip_usu;    
 
-	public int getCodigo() {
-		return codigo;
+    
+    /*METODOS GETTER Y SETTER*/
+
+	public int getCod_tip_usu() {
+		return cod_tip_usu;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setCod_tip_usu(int cod_tip_usu) {
+		this.cod_tip_usu = cod_tip_usu;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNom_tip_usu() {
+		return nom_tip_usu;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNom_tip_usu(String nom_tip_usu) {
+		this.nom_tip_usu = nom_tip_usu;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-        
+      
 }

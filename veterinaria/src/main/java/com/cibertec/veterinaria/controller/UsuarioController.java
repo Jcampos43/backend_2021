@@ -34,7 +34,7 @@ public class UsuarioController {
 		return uSer.listaUsuario();
 	}
 		
-	@PostMapping(value = "/registraCliente")
+	@PostMapping(value = "/registraUsuario")
 	public void registraCliente(@RequestBody Usuario bean) {
 		uSer.insertaUsuario(bean);
 	}
@@ -55,7 +55,7 @@ public class UsuarioController {
 		Usuario u = new Usuario();
 		try {
 			boolean resultado=false;
-			u = uSer.login(usuario.getDni(), usuario.getPassword());
+			u = uSer.login(usuario.getDni_usu(), usuario.getPass_usu());
 			if(u==null) {
 				respuestaWeb.setTipoRespuesta(TipoRespuestaWeb.VACIO);
 			}
@@ -63,7 +63,7 @@ public class UsuarioController {
 				respuestaWeb.setTipoRespuesta(TipoRespuestaWeb.CORRECTA);	
 				resultado=true;
 			}
-			respuestaWeb.getParametros().put("idusuario", u.getCodigo());
+			respuestaWeb.getParametros().put("usuario", u);
 			respuestaWeb.getParametros().put("resultado", resultado);
 			return ResponseEntity.ok(respuestaWeb);
 
@@ -71,4 +71,9 @@ public class UsuarioController {
 			return ResponseEntity.badRequest().body(ExcepcionUtil.controlar(excepcion));
 		}
 	}
+	
+	/*@GetMapping("/iniciarSesion/{dni_usu}/{pass_usu}")
+	public Usuario obtenerUsuario(@PathVariable("dni_usu") String dni_usu,@PathVariable("pass_usu") String pass_usu) {
+		return uSer.iniciarSesion(dni_usu, pass_usu);
+	}*/
 }

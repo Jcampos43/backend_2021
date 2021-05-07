@@ -15,9 +15,11 @@ public class InterfazServiceImp implements InterfazService {
     @Autowired
     InterfazRepository repository;
 
-    @Override
-    public List<Interfaz> listaInterfaz() {
-		return repository.findAll();
+	@Override
+	public List<Interfaz> listaInterfaz(int cod_tip_usu) {
+		return repository.listaInterfaz(cod_tip_usu);
 	}
+
+   
 
 }
