@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -47,13 +48,16 @@ public class Producto implements Serializable {
 	private String desc_html_pro;
 
 	@Column(name="foto1")
-	private String foto1;
+	@Lob
+	private byte[] foto1;
 	
 	@Column(name="foto2")
-	private String foto2;
+	@Lob
+	private byte[] foto2;
 	
 	@Column(name="foto3")
-	private String foto3;
+	@Lob
+	private byte[] foto3;
 
 	/*Metodos GET Y SET */
 	public int getCod_pro() {
@@ -120,29 +124,31 @@ public class Producto implements Serializable {
 		this.desc_html_pro = desc_html_pro;
 	}
 
-	public String getFoto1() {
+	public byte[] getFoto1() {
 		return foto1;
 	}
 
-	public void setFoto1(String foto1) {
+	public void setFoto1(byte[] foto1) {
 		this.foto1 = foto1;
 	}
 
-	public String getFoto2() { 
+	public byte[] getFoto2() {
 		return foto2;
 	}
 
-	public void setFoto2(String foto2) {
+	public void setFoto2(byte[] foto2) {
 		this.foto2 = foto2;
 	}
 
-	public String getFoto3() {
+	public byte[] getFoto3() {
 		return foto3;
 	}
 
-	public void setFoto3(String foto3) {
+	public void setFoto3(byte[] foto3) {
 		this.foto3 = foto3;
 	}
+	
+	
 
 	
 	

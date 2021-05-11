@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cibertec.veterinaria.entity.Producto;
 import com.cibertec.veterinaria.service.ProductoService;
+import com.cibertec.veterinaria.util.TipoRespuestaWeb;
 
 @RequestMapping(value="/producto")
 @RestController
@@ -36,27 +40,39 @@ public class ProductoController {
 		return pSer.listaProducto();
 	} 
 		
-	@PostMapping(value = "/registraProducto")
-	public void insertaProducto(@RequestBody Producto bean, @RequestParam("file")MultipartFile imagen, RedirectAttributes attribute) {
+	@PostMapping(value = "/registraProducto", consumes = "multipart/form-data")
+	public Map<String, Object> insertaProducto(@RequestParam("nom_pro") String nom_pro,@RequestParam("pre_pro") String pre_pro, 
+												@RequestParam("stock_pro") String stock_pro,@RequestParam("desc_sim_pro") String desc_sim_pro,
+												@RequestParam("foto1")MultipartFile imagen1,@RequestParam("foto2")MultipartFile imagen2, 
+												@RequestParam("foto3")MultipartFile imagen3) {
+		Map<String, Object> salida=new HashMap<>();
 		
-		if(!imagen.isEmpty()) {
-			Path directorio=Paths.get("src//main//resources//static/images");
-			String rutaAbsoluta=directorio.toFile().getAbsolutePath();
-			
-			try {
-				byte[] bytesImg=imagen.getBytes();
-				Path rutaCompleta=Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
-				Files.write(rutaCompleta, bytesImg);
-				
-				bean.setFoto1(imagen.getOriginalFilename());
-				bean.setFoto2(imagen.getOriginalFilename());
-				bean.setFoto3(imagen.getOriginalFilename()); 
-			} catch (IOException e) {
-				e.printStackTrace(); 
+		try {
+			Producto bean = new Producto();
+			bean.setNom_pro(nom_pro);
+			bean.setPre_pro(pre_pro);
+			bean.setStock_pro(stock_pro);
+			bean.setDesc_sim_pro(desc_sim_pro);
+			bean.setFoto1(imagen1.getBytes());
+			bean.setFoto2(imagen2.getBytes());
+			bean.setFoto3(imagen3.getBytes());
+			List<Producto> lstProd = pSer.listaProducto();
+			if(CollectionUtils.isEmpty(lstProd)) {
+				Producto objSalida = pSer.insertaProducto(bean);
+				if(objSalida==null) {
+					salida.put("mensaje", TipoRespuestaWeb.INCORRECTO);
+				}else {
+					salida.put("mensaje", TipoRespuestaWeb.CORRECTA);
+				}
 			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			salida.put("mensaje", TipoRespuestaWeb.ERROR);
 		}
 		
-		pSer.insertaProducto(bean);
+		return salida;
+		
 	}
 	
 	@PutMapping(value = "/actualizaProducto")
